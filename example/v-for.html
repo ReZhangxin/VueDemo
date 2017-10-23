@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(xingzuo,index) in sortStar">
+               {{index +1}}： {{xingzuo.star}} ==> {{xingzuo.date}}
+            </li>
+        </ul>
+    </div>
+
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            constellation:[
+                {star:"摩羯座",date:"12月22日~01月19日"},
+                {star:"水瓶座",date:"01月20日~02月18日"},
+                {star:"双鱼座",date:"02月19日~03月20日"},
+                {star:"白羊座",date:"03月21日~04月19日"},
+                {star:"金牛座",date:"04月20日~05月20日"},
+                {star:"双子座",date:"05月21日~06月21日"},
+                {star:"巨蟹座",date:"06月22日~07月22日"},
+                {star:"狮子座",date:"07月23日~08月22日"},
+                {star:"处女座",date:"08月23日~09月22日"},
+                {star:"天秤座",date:"09月23日~10月23日"},
+                {star:"天蝎座",date:"10月24日~11月21日"},
+                {star:"射手座",date:"11月22日~12月21日"}
+            ]
+        },
+        computed:{
+            sortStar:function(){
+                return sortByKey(this.constellation,'date');
+            }
+        }
+    });
+    //数组对象方法排序:
+    function sortByKey(array,key){
+        return array.sort(function(a,b){
+            var x=a[key];
+            var y=b[key];
+            return ((x<y)?-1:((x>y)?1:0));
+        });
+    }
+   
+</script>   
+</body>
+</html>
+
