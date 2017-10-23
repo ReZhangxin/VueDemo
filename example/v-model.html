@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model</title>
+    <script src="../assets/vue.js"></script>
+</head>
+<body>
+    <h1>v-model 实例</h1>
+    <hr>
+    <div id="app">
+        <p>原始文本数据：{{message}}</p>
+        <p>v-model <input type="text" v-model="message"></p>
+        <p>v-model.lazy <input type="text" v-model.lazy="message"></p>
+        <p>v-model.number <input type="text" v-model.number="message"></p>
+        <p>v-model.trim <input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>多选框绑定一个值</h3>
+        <input type="checkbox" id="true" v-model="strue">
+        <label for="true">{{strue}}</label>
+        <hr>
+        <h3>多选框绑定数组</h3>
+        <p>
+            <input type="checkbox" id="01" value="小鑫" v-model="names">
+            <label for="01">小鑫</label>
+            <input type="checkbox" id="02" value="大鑫" v-model="names">
+            <label for="02">大鑫</label>
+            <input type="checkbox" id="03" value="老鑫" v-model="names">
+            <label for="03">老鑫</label>
+            <p>{{names}}</p>
+        </p>
+        <h3>单选框绑定</h3>
+        <p>
+            <input type="radio" id="001" value="男" v-model="sex">
+            <label for="001">男</label>          
+            <input type="radio" id="002" value="女" v-model="sex">
+            <label for="002">女</label>           
+            <p>你是一个{{sex}}孩子</p>
+        </p>
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+              message:'model',
+              strue:'true',
+              names:[],
+              sex:"男"
+            }
+        })
+    </script>
+</body>
+</html>
