@@ -4,22 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>v-text & v-html</title>
+    <title>v-on：绑定事件监听器</title>
     <script src="../assets/vue.js"></script>
 </head>
 <body>
-    <h1>v-text实例</h1>
+    <h1>v-on：绑定事件监听器</h1>
     <hr>
     <div id="app">
-       <span>{{message}}</span>===<span v-text="message"></span>
-       <div v-html="dodo"></div>
+       本场得分：{{count}}
+       <p>
+           <button @click="add">加分</button>
+           <button @click="reduce">减分</button>
+           <input type="text" @keyup.enter="onEnter" v-model="second">
+       </p>
     </div>
     <script>
         var app = new Vue({
             el:'#app',
-            data:{
-                message:`你好，世界 ! 现在是 ${new Date().toLocaleTimeString()}`,
-                dodo:"<h2>hellofei</h2>"
+            data:{    
+                count:0     
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                },
+                reduce:function(){
+                    this.count--;
+                },
+                onEnter:function(){
+                    this.count = this.count + parseInt(this.second);
+                }
 
             }
         })
