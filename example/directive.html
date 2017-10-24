@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.directive自定义指令</h1>
+    <hr>
+    <div id="app">
+        <div v-xin="color">{{init}}</div>
+        <p><button @click="start">开始</button></p>
+        <p><button onclick="end()">暂停</button></p>
+    </div>
+    <script>
+        function end(){
+           
+           
+            clearInterval(timer);
+        }
+        Vue.directive('xin',{
+
+            bind:function(){//被绑定
+                console.log('1 - bind');
+            },
+            inserted:function(el,binging){//绑定到节点
+                console.log('2 - inserted');
+            },
+            update:function(el,binding){//组件更新
+                
+            },
+            componentUpdated:function(el,binding){//组件更新完成
+                
+            },
+            unbind:function(el,binding){//解绑
+                el.style="color:"+binding.value;
+            }
+        })
+        // el.style="color:"+binding.value;
+        var app = new Vue({
+            el:'#app',
+            data:{
+                init:10,
+                color:"coral"
+            },
+            methods:{
+                start:function(){
+                     timer = setInterval(function(){
+                         app.init++;
+                    },1000)                     
+                }
+            }
+        })
+    </script>
+</body>
+</html>
