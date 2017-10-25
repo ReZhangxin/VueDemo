@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component组件</title>
+    <script src="../assets/vue.js"></script>
+</head>
+<body>
+    <h1>Component组件（1）</h1>
+    <hr>
+    
+    <div id="app">
+        <blog></blog>
+        <xin></xin>
+    </div>
+    
+    
+    <script>
+        Vue.component('blog',{
+            template:`<div>我是全局template模板<a href="http://zhangss.win">这是我的个人网址</a></div>`
+        })
+        var app = new Vue({
+            el:'#app',
+            components:{
+                "xin":{
+                    template:`<div>我叫小鑫</div>`
+                }
+            }
+           
+        })
+    </script>
+
+</body>
+</html>
