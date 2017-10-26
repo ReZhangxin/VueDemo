@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>v-on：绑定事件监听器</title>
+    <style>
+        #app2 {
+            width: 300px;
+            height: 400px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .header {
+            height: 20px;
+           
+        }
+        .content {
+            width: 245px;height: 20px;float: left;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+        .btn {
+            float: right;
+            height: 20px;
+            outline: none;
+            border: none;
+            background: lightgreen;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
     <script src="../assets/vue.js"></script>
 </head>
 <body>
@@ -18,7 +45,50 @@
            <input type="text" @keyup.enter="onEnter" v-model="second">
        </p>
     </div>
+    <div id="app2">
+        <div class="header">
+            <div contenteditable class="content"></div>
+            <button class="btn" @click="add">新增</button>
+            <ul v-html="box">
+                
+            </ul>
+        </div>
+    </div>
     <script>
+        var app = new Vue({
+           el:'#app2' ,
+           data:{
+               box:'',
+               boxContent:`
+                <p>nihao</p>
+               `
+           },
+           methods:{
+               add:function(){
+                   this.box = this.boxContent;
+               }
+           }
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         var app = new Vue({
             el:'#app',
             data:{    
