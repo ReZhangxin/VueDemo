@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        *{margin:0;padding:0;}
-        body,html{width:100%;}
+        * {margin: 0;padding: 0;}
+        body,html {width: 100%;padding: 20px;}
+        #app2 {width: 500px;}
         #app2 textarea {
             resize: none;outline: none;
             border: 1px solid #dcdcdc;
@@ -37,6 +38,9 @@
             transform: translateX(10px);
             opacity: 0;
         }
+        .like {
+            cursor: pointer;
+        }
     </style>
     <script src="../assets/vue.js"></script>
     
@@ -50,18 +54,67 @@
        <transition name="slide-fade">
             <h3 v-if="sum">哈哈，笨蛋是2</h3>
             <h3 v-else="sum">哈哈，你猜你猜</h3>
-       </transition>
-      
-       <hr>
+       </transition>  
+       <hr>     
     </div>
+
     <div id="app2">
-            <textarea v-on:click="showComment" name="" id="" cols="30" rows="10" placeholder="请写下你的评论. . ."></textarea>
-            <transition name="slide-fade">
-                <div v-show="cancle" v-on:click="changeNone"><button>取消</button></div>
-            </transition>
-            
+        <textarea v-on:click="showComment" name="" id="" cols="30" rows="10" placeholder="请写下你的评论. . ."></textarea>
+        <transition name="slide-fade">
+            <div v-show="cancle" v-on:click="changeNone"><button>取消</button></div>
+        </transition>
+    </div>
+
+    <div id="app3">
+        <div class="like" @click="like" v-show="seen" :style="style">
+            <span>{{init}}</span>人赞     
         </div>
+    </div>
+
+    <div id="app4">
+        <div class="like" @click="isLike = !isLike" >
+            <span v-if="isLike">赞一个</span> 
+            <span v-else="isLike" :style="style">取消赞</span> 
+        </div>
+    </div>
     <script>
+        var app4 = new Vue({
+            el:'#app4',
+            data:{
+                isLike:true,
+                style:{
+                    color:'red',
+                    width:'3em',
+                    backgroundColor:'black'
+                }
+            }
+        });
+        var app3 = new Vue({
+            el:'#app3',
+            data:{
+                init:2,
+                seen:true,
+                style:'xin',
+                xin:{
+                    color:'red',
+                    width:'3em',
+                    backgroundColor:'black'
+                }
+            },
+            methods:{
+                like:function(){
+                   if(this.seen == true){
+                       this.init ++;
+                       this.seen = 'false';
+                        this.style = this.xin;
+                   }else{
+                       this.init --;
+                       this.seen = true;
+                       this.style = '';
+                   }
+                }
+            }
+        });
         var app = new Vue({
             el:'#app',
             data:{
@@ -81,7 +134,8 @@
                     this.cancle = false;
                 }
             }
-        })
+        });
+
 
     </script>
 </body>
