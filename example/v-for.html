@@ -17,7 +17,35 @@
         </ul>
     </div>
 
+    <div id="app2">
+        <h3 v-for="(item,index) in sortItems" >
+            {{index+1}}号人物{{item.name}}年龄{{item.age}}
+        </h3>
+    </div>
+
 <script>
+    var app2 = new Vue({
+        el:'#app2',
+        data:{
+            items:[
+                {name:"德玛",age:23},
+                {name:"卡特",age:6},
+                {name:"女警",age:18}
+                ]
+        },
+        computed:{
+            sortItems:function(){
+                return st(this.items,'age');
+            }
+        }
+    });
+    function st(array,key){
+        return array.sort(function(a,b){
+            var x=a[key];
+            var y=b[key];
+            return ((x<y)?-1:((x>y)?1:0));
+        });
+    }
     var app = new Vue({
         el:'#app',
         data:{
