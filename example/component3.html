@@ -14,9 +14,21 @@
        <xin></xin>
     </div>
     <script>
-        var xinComponent ={
-            template:`<div>Xin 来自 Huaibei</div>`
+        var city = {
+            template:`<div>我在上海哈哈!</div>`
         }
+        var xinComponent ={
+            template:`
+                <div>
+                    <p>你现在在哪里啊？</p>
+                    <city></city>
+                </div>
+            `,
+            components:{
+                "city":city
+            }
+        }
+        
         var app = new Vue({
             el:'#app',
             components:{

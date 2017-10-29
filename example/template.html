@@ -5,29 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template</title>
+    <style>
+        .commin {
+            width: 400px;
+            height: 100px;
+            padding: 10px;
+            background: black;
+            text-align: center;
+            transition: all 1s ease;
+            cursor: pointer;
+        }
+        .aqua {
+            color: aqua;
+        }
+        .aqua:hover{
+            background: aqua;
+            color: black;
+        }
+        .coral {
+            color: coral;
+        }
+        .coral:hover {
+            background: coral;
+            color: black;
+        }
+    </style>
     <script src="../assets/vue.js"></script>
 </head>
 <body>
     <h1>Template 制作模板</h1>
     <hr>
-    <div id="app">
+    <div id="app" :class='coral'>
         {{message}}
     </div>
-    <template id="app2">
-        <h2 style="color:coral">我是template模板</h2>
+    <div id="app2">
+        
+    </div>
+    <template id="app2-1">
+        <h2 :class="[commin,aqua]">这里是template标签里的模板</h2>
     </template>
-    <script type="x-template" id="app3">
-        <h2 style="color:orange">我是script标签模板</h2>
+    <div id="app3"></div>
+    <script type="x-template" id="app3-1">
+        <div :class="[commin,coral]">
+            <h3>我是Script标签模板</h3>
+            <p>可以外部引用哦</p>
+        </div>
     </script>
     <script>
         var app = new Vue({
-            el:'#app',
-            data:{
-                message:`你好，世界 ! `
+            el: '#app',
+            data: {
+                message: '永远不要忘记你是最棒的！',
+                coral: 'coral',
+                aqua: 'aqua',
+                commin: 'commin'
             },
-            // template:`<h2 style="color:aqua">你好,我是选项模板</h2>`,
-            template:'#app3'
+            template: `<h2 :class='[coral,commin]'>选项里的模板</h2>`
+        });
+        var app2= new Vue({
+            el: '#app2',
+            data: {
+                coral: 'coral',
+                aqua: 'aqua',
+                commin: 'commin'
+            },
+            template: '#app2-1'
+        });
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                coral: 'coral',
+                aqua: 'aqua',
+                commin: 'commin'
+            },
+            template: '#app3-1'
         })
+
+        
     </script>
 </body>
 </html>
