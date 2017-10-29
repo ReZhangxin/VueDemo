@@ -5,30 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Component组件</title>
+    <style>
+        .boo {
+            border:1px solid #ddd;
+        }
+    </style>
     <script src="../assets/vue.js"></script>
 </head>
 <body>
     <h1>Component组件（1）</h1>
     <hr>
-    
     <div id="app">
         <blog></blog>
-        <xin></xin>
+        <foo :class="boo"></foo>
     </div>
-    
-    
+   <div id='goo'>
+       <blog ></blog>
+   </div>
     <script>
         Vue.component('blog',{
-            template:`<div>我是全局template模板<a href="http://zhangss.win">这是我的个人网址</a></div>`
-        })
+            template: `
+                <div>
+                    <p>这是一个全局组件</p>
+                    <h4>hello</h4>
+                    <p>world</P>
+                </div>
+                    
+                `
+        });
         var app = new Vue({
-            el:'#app',
+            el: '#app',
+            data:{
+                boo:'boo'
+            },
             components:{
-                "xin":{
-                    template:`<div>我叫小鑫</div>`
+                "foo":{template:`
+                <div >
+                    <p>这是一个局部组件</p>
+                </div> 
+                `,
+                props:['foo']
                 }
             }
            
+        });
+        var app2 = new Vue({
+            el: '#goo'
         })
     </script>
 
