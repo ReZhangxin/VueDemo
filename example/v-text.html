@@ -14,7 +14,17 @@
        <span>{{message}}</span>===<span v-text="message"></span>
        <div v-html="dodo"></div>
     </div>
+
+    <div id="app2">
+        <p v-text="author"></p>
+    </div>
     <script>
+        var app2 = new Vue({
+            el:'#app2',
+            data:{
+                author:'鑫少来也~'
+            }
+        });
         var app = new Vue({
             el:'#app',
             data:{
