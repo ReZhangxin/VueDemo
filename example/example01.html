@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+    <script src="../assets/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:`你好，世界 ! 现在是 ${new Date().toLocaleTimeString()}`
+            },
+            mounted:function(){
+                $('#app').html("我是Jquery")
+            },
+            methods:{
+                add:function(){
+                    console.log("hehe")
+                }
+            }
+        });
+        app.add();
+    </script>
+</body>
+</html>
