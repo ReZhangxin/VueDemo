@@ -10,18 +10,17 @@
 <body>
     <h1>propsData</h1>
     <hr>
-    <header></header>
+    <zhangxin></zhangxin>>
     <script>
-        var header_a =Vue.extend({
-            template:`<p>{{message}}-{{a}}`,
+        var zhangxin = Vue.extend({
+            template:`<p>{{message}}</p>`,
             data:function(){
                 return {
-                    message:"hello xin"
+                    message:'从来没有人在意你的努力！尽管去拼搏！'
                 }
-            },
-            props:['a']
+            }
         });
-        new header_a({propsData:{a:"haha"}}).$mount('header');
+        new zhangxin().$mount('zhangxin');
     </script>
 </body>
 </html>

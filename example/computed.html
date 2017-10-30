@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/vue.js"></script>
+</head>
+<body>
+    <h1>Computed option</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="ne in news">{{ne.title}}-------------{{ne.date}}</li>
+        </ul>
+    </div>
+    <script>
+        var newList =[
+            {title:"结婚不在乎钱的，之后过成什么样了？评论扎心了",date:"2017-10-30"},
+            {title:"有多少人放弃移动而选择联通电信？",date:"2017-10-31"},
+            {title:"人类史上到底挖过多深的坑",date:"2017-10-22"},
+            {title:"Mata隔空喊话Mlxg：no gg，love u",date:"2017-10-25"}
+        ]
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:"你总是在不经意间，",
+                newList:newList
+            },
+            computed:{
+                meg:function(){
+                    return this.message + "浪费你的生活！";
+                },
+                news:function(){
+                        return sortByKey(this.newList,'date').reverse();
+                }
+            }
+        });
+        function sortByKey(array,key){
+            return array.sort(function(a,b){
+                var x=a[key];
+                var y=b[key];
+                return ((x<y)?-1:((x>y)?1:0));
+            });
+        }
+    </script>
+</body>
+</html>
