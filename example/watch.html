@@ -16,6 +16,7 @@
         <p><button @click="shengwen">升高温度</button><button @click="jiangdi">降低温度</button></p>
     </div>
     <script>
+
         var app = new Vue({
             el:'#app',
             data:{
@@ -30,17 +31,26 @@
                     this.wendu-=5;
                 }
             },
-            watch:{
-                wendu:function(newVal,oldVal){
-                    if(newVal>=26){
-                        this.chuanyi = 'T-shit'
-                    }else if(newVal<26 && newVal>0){
-                        this.chuanyi = '夹克长裙'
-                    }else{
-                        this.chuanyi = '棉衣羽绒服'
-                    }
+            // watch:{
+            //     wendu:function(newVal,oldVal){
+            //         if(newVal>=26){
+            //             this.chuanyi = 'T-shit'
+            //         }else if(newVal<26 && newVal>0){
+            //             this.chuanyi = '夹克长裙'
+            //         }else{
+            //             this.chuanyi = '棉衣羽绒服'
+            //         }
+            //     }
+            // }
+        });
+        app.$watch('wendu',function(newVal,oldVal){
+            if(newVal>=26){
+                    this.chuanyi = 'T-shit'
+                }else if(newVal<26 && newVal>0){
+                    this.chuanyi = '夹克长裙'
+                }else{
+                    this.chuanyi = '棉衣羽绒服'
                 }
-            }
         })
     </script>
 </body>
