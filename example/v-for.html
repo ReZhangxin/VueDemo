@@ -22,8 +22,29 @@
             {{index+1}}号人物{{item.name}}年龄{{item.age}}
         </h3>
     </div>
-
+    <div id="app3">
+        <ul>
+            <li v-for="book in books">{{book}}</li>
+        </ul>
+        <p>过滤器过滤的结果原先是100现在是：{{number | num |nn }}</p>
+    </div>
 <script>
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            books:["<Vue.js实战>","<JavaScript高级程序设计>","<Node.js>"],
+            date:new Date(),
+            number:120
+        },
+        filters:{
+            num:function(number){
+                return number / 10;
+            },
+            nn:function(nn){
+                return nn/2
+            }
+        }
+    });
     var app2 = new Vue({
         el:'#app2',
         data:{
