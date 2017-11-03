@@ -1,2 +1,1 @@
-# VueDemo
-学习vue的小Demo
+# Vue的学习
