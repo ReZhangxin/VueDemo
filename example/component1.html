@@ -17,41 +17,33 @@
     <hr>
     <div id="app">
         <blog></blog>
-        <foo :class="boo"></foo>
+        <hr>
+        <xin></xin>
     </div>
-   <div id='goo'>
-       <blog ></blog>
-   </div>
     <script>
-        Vue.component('blog',{
-            template: `
-                <div>
-                    <p>这是一个全局组件</p>
-                    <h4>hello</h4>
-                    <p>world</P>
-                </div>
-                    
-                `
-        });
-        var app = new Vue({
-            el: '#app',
-            data:{
-                boo:'boo'
-            },
+        var Xin = {
+            template:`
+            <div>
+                <a href='#'>我的博客!!!</a>
+                <p>欢迎来到实力至上主义的教室!!!</p>
+            </div>
+            `
+        };      
+       Vue.component('blog',{
+           template:`
+            <div>
+                <a href='#'>我的博客</a>
+                <p>欢迎来到实力至上主义的教室</p>
+            </div>
+           `
+       });
+       var app = new Vue({
+           el: '#app',
             components:{
-                "foo":{template:`
-                <div >
-                    <p>这是一个局部组件</p>
-                </div> 
-                `,
-                props:['foo']
-                }
+                "xin":Xin
             }
-           
-        });
-        var app2 = new Vue({
-            el: '#goo'
-        })
+       })
+       
     </script>
 
 </body>
