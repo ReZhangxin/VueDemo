@@ -10,17 +10,18 @@
 <body>
     <h1>propsData</h1>
     <hr>
-    <zhangxin></zhangxin>>
+    <zhangxin></zhangxin>
     <script>
         var zhangxin = Vue.extend({
-            template:`<p>{{message}}</p>`,
+            template:`<p> {{message}}~~~{{a}} </p>`,
             data:function(){
                 return {
                     message:'从来没有人在意你的努力！尽管去拼搏！'
                 }
-            }
+            },
+            props:['a']
         });
-        new zhangxin().$mount('zhangxin');
+        new zhangxin({propsData:{a:666}}).$mount('zhangxin');
     </script>
 </body>
 </html>

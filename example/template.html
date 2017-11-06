@@ -51,7 +51,38 @@
             <p>可以外部引用哦</p>
         </div>
     </script>
+
+    <ul id="app4">
+        <li v-for="(item,index) in items">{{index}}---{{item}}</li>
+    </ul>
+
+    <ul id="app5">
+        <xin v-for="item in groceryList" :todo="item"></xin>
+    </ul>
+
     <script>
+        Vue.component("xin",{
+            template:`<li>{{todo.text}}</li>`,
+            props:['todo']
+        });
+        var app5 =new Vue({
+            el: '#app5',
+            data: {
+                groceryList: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其他什么人吃的东西' }
+                ]
+            }
+        });
+        var app4 = new Vue({
+            el: '#app4',
+            data:{
+                items:[
+                    "apple","script","java"
+                ]
+            }
+        });
         var app = new Vue({
             el: '#app',
             data: {
