@@ -13,15 +13,17 @@
 </head>
 <body>
     <h1>v-bind实例</h1>
+   
     <hr>
     <div id="app">
-        <img v-bind:src="imgSrc" alt="" width="400">
+        <p>{{message}}</p>
+        <img v-bind:src="imgSrc" :title="t" :width="w">
         <p><a :href="blogUrl" target="_blank">我的博客地址</a></p>
         <hr>      
         <div :class="className">1、绑定class</div>
         <div :class="{classA:isOk}">2、绑定class判断</div>
-        <div :class="[classA,classB]">3、绑定class数组</div>
-        <div :class="isOk?classA:classB">4、绑定class数组三元运算</div>
+        <div :class="[A,B]">3、绑定class数组</div>
+        <div :class="isOk?A:B">4、绑定class数组三元运算</div>
         <hr>
         <div>
             <input type="checkbox" id="isOk" v-model="isOk">
@@ -38,10 +40,12 @@
                 message:`你好，世界 ! 现在是 ${new Date().toLocaleTimeString()}`,
                 imgSrc:'http://ouch71mj2.bkt.clouddn.com/ship.jpg',
                 blogUrl:"http://zhangss.win",
+                w:'500',
+                t: 'This is a wonderful photo',
                 className:'classA',
                 isOk:false,
-                classA:'classA',
-                classB:'classB',
+                A:'classA',
+                B:'classB',
                 aqua:'aqua',
                 font:'150%',
                 styleObj:{
