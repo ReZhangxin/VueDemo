@@ -38,74 +38,27 @@
     <h1>v-on：绑定事件监听器</h1>
     <hr>
     <div id="app">
-       本场得分：{{count}}
-       <p>
-           <button @click="add">加分</button>
-           <button @click="reduce">减分</button>
-           <input type="text" @keyup.enter="onEnter" v-model="second">
-       </p>
-    </div>
-    <div id="app2">
-        <div class="header">
-            <div contenteditable class="content"></div>
-            <button class="btn" @click="add">新增</button>
-            <ul v-html="box">
-                
-            </ul>
-        </div>
+        <button @click="show($event)">戳我一下</button>
+        <p @click="pp">
+            <button @click.stop="pp">你敢戳我！！！</button>
+        </p>
+        <p>
+            <button @contextmenu.prevent="pp">请右击</button>
+        </p>
+        <p>
+            <input type="text" @keydown=show($event)>
+        </p>
     </div>
     <script>
         var app = new Vue({
-           el:'#app2' ,
-           data:{
-               box:'',
-               boxContent:`
-                <p>nihao</p>
-               `
-           },
-           methods:{
-               add:function(){
-                   this.box = this.boxContent;
-               }
-           }
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        var app = new Vue({
-            el:'#app',
-            data:{    
-                count:0,
-                second:1     
-            },
-            methods:{
-                add:function(){
-                    this.count++;
+            el: '#app',
+            methods: {
+                show: function (e) {
+                    alert(e.keyCode)
                 },
-                reduce:function(){
-                    this.count--;
-                },
-                onEnter:function(){
-                    this.count = this.count + parseInt(this.second);
+                pp: function () {
+                    alert("hello")
                 }
-
             }
         })
     </script>
