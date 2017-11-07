@@ -13,6 +13,7 @@
   "author": "ReZhangxin",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.0",
     "utility": "^1.12.0"
   }
 }
