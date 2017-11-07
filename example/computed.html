@@ -15,7 +15,67 @@
             <li v-for="ne in news">{{ne.title}}-------------{{ne.date}}</li>
         </ul>
     </div>
+    <div id="app2">
+        <p><input type="text"></p>
+        <p>商品价格是：{{prices}}</p>
+    </div>
+    <div id="app3">
+        <p>{{now}}</p>
+        <p>{{tt}}</p>
+    </div>
     <script>
+        var app3 = new Vue({
+            el: '#app3',
+            data:{
+                tt:new Date()
+            },
+            // methods:{
+            //     now:function(){
+            //         return new Date();
+            //     }
+            // }
+            computed:{
+                now:function(){
+                    return new Date();
+                }
+            }
+        });
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                package1: [{
+                    name: "iphone8",
+                    price: 4699,
+                    count: 2
+                },
+                {
+                    name: "ipad",
+                    price: 2888,
+                    count: 3
+                }],
+                package2: [{
+                    name: "apple",
+                    price: 28,
+                    count: 6
+                },{
+                    name: "banana",
+                    price: 20,
+                    count: 4
+                }]
+            },
+            computed:{
+                prices:function(){
+                    var price = 0;
+                    for(var i = 0; i < this.package1.length;i++ ){
+                        price += this.package1[i].price * this.package1[i].count;
+                    }
+                    for(var i = 0; i < this.package2.length;i++ ){
+                        price += this.package2[i].price * this.package2[i].count;
+                    }
+                    return price;
+                }
+            }
+        });
         var newList =[
             {title:"结婚不在乎钱的，之后过成什么样了？评论扎心了",date:"2017-10-30"},
             {title:"有多少人放弃移动而选择联通电信？",date:"2017-10-31"},
