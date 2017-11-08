@@ -40,7 +40,71 @@
             <p>你是一个{{sex}}孩子</p>
         </p>
     </div>
+    <div id="app2">
+        <p>{{total1}}</p>
+        <button @click="add()">+1</button>
+    </div>
+    <div id="app3">
+        <p>{{total}}</p>
+        <my-component v-model="total"></my-component>
+    </div>
+    <div id="app4">
+        <p>{{totals}}</p>
+        <my-components v-model="totals"></my-components>
+        <button @click="reduces">-1</button>
+    </div>
     <script>
+        Vue.component("my-components",{
+            props: ["value"],
+            template: `<input :value="value" @input="add"/>`,
+            methods: {
+                add: function (e) {
+                    this.$emit("input",e.target.value)
+                }
+            }
+        });
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                totals: 0
+            },
+            methods: {
+                reduces: function () {
+                    this.totals--
+                }
+            }
+        });
+        Vue.component("my-component",{
+            template: `<button @click="add">+1</button>`,
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                add: function () {
+                    this.counter++;
+                    this.$emit('input',this.counter)
+                }
+            }
+        });
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                total: 0
+            }
+        });
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                total1: 0
+            },
+            methods: {
+                add: function () {
+                    this.total1++;
+                }
+            }
+        });
         var app = new Vue({
             el:'#app',
             data:{
