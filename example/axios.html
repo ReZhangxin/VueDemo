@@ -7,12 +7,7 @@
     <title>Document</title>
     <style>
         p {
-            width: 500px;
-            height: 2em;
-            line-height: 2em;
-            border: 1px solid #ddd;
-            margin: 10px auto;
-            text-align: center;
+            border: 1px solid #ddd; margin: 10px;
         }
     </style>
     <script src="../assets/vue.js"></script>
@@ -22,26 +17,25 @@
     <h1>hello</h1>
     <hr>
     <div id="app">
-        {{message}}
+        <button @click="get()">点我</button>
     </div>
-    <p id="someText"></p>
     <script>
         var app = new Vue({
             el:'#app',
             data:{
-                message:`你好，世界 ! 现在是 ${new Date().toLocaleTimeString()}`
+                results:[]
             },
-            methods: {
-            }
+           methods: {
+               get:function () {
+                   axios.get('./a.txt').then(function(res){
+                    alert(res.data)
+                   },function(res){
+                    alert(res.status)
+                   })
+               }
+           }
         })
-        axios.get('./00.txt')
-        .then(function (res) {
-            var text = document.getElementById('someText').innerHTML=res.data;
-          
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+        
     </script>
 </body>
 </html>
