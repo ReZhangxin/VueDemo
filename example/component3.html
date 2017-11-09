@@ -13,7 +13,51 @@
     <div id="app">
        <xin></xin>
     </div>
+    <div id="app2">
+        {{message}}
+        <component-a></component-a>
+    </div>
+    <div id="app3">
+        <input type="text" v-model="messages">
+        <my-component :message="messages">
+        </my-component>
+    </div>
     <script>
+        Vue.component('my-component',{
+            props:{
+                message:[String,Number]
+            },
+            template: `<button>{{message}}</button>`
+            
+        });
+
+        var app3 = new Vue({
+            el:'#app3',
+            data: {
+                messages: ''
+            }
+        })
+        var bus = new Vue();
+        Vue.component('component-a',{
+            template: `<button @click="handelEvent">传递事件</button>`,
+            methods: {
+                handelEvent: function () {
+                    bus.$emit('on-message','来自组件component-a的内容')
+                }
+            }
+        });
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: ''
+            },
+            mounted: function () {
+                var _this = this;
+                bus.$on('on-message',function(msg){
+                    _this.message = msg
+                })
+            }
+        });
         var city = {
             template:`<div>我在上海哈哈!</div>`
         }
