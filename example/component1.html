@@ -16,78 +16,11 @@
     <h1>Component组件（1）</h1>
     <hr>
     <div id="app">
-<<<<<<< HEAD
-        <p>总数： {{ total }}</p>
-        <my-component
-        @add = "handleGetTotal"
-        @red = "handleGetTotal"
-       ></my-component>
+        
     </div>
     <script>
-      Vue.component("my-component",{
-          template: `
-            <div>
-                <button @click="handleIncrease">+1</button>
-                <button @click="handleReduce">-1</button>
-            </div>
-          `,
-          data: function(){
-              return {
-                  counter: 0
-              }
-          },
-          methods: {
-              handleIncrease: function () {
-                  this.counter++;
-                  this.$emit('add',this.counter);
-              },
-              handleReduce: function () {
-                this.counter--;
-                this.$emit('red',this.counter)
-              }
-          }
-      });
-      var app =new Vue({
-          el: '#app',
-          data: {
-              total: 0
-          },
-          methods: {
-              handleGetTotal: function (total) {
-                this.total = total;
-              }
-          }
-      })
-=======
-        <blog></blog>
-        <hr>
-        <xin></xin>
-    </div>
-    <script>
-        var Xin = {
-            template:`
-            <div>
-                <a href='#'>我的博客!!!</a>
-                <p>欢迎来到实力至上主义的教室!!!</p>
-            </div>
-            `
-        };      
-       Vue.component('blog',{
-           template:`
-            <div>
-                <a href='#'>我的博客</a>
-                <p>欢迎来到实力至上主义的教室</p>
-            </div>
-           `
-       });
-       var app = new Vue({
-           el: '#app',
-            components:{
-                "xin":Xin
-            }
-       })
-       
->>>>>>> 732840de109e1b207a858cdb7a86f7ab8d77543f
+      
+
     </script>
 
 </body>
