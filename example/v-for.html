@@ -58,6 +58,11 @@
             sortItems:function(){
                 return st(this.items,'age');
             }
+        },
+        methods: {
+            add: function () {
+                this.items.push("{name:'小鑫',age:22}")
+            }
         }
     });
     function st(array,key){
