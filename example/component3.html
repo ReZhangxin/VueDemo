@@ -22,7 +22,71 @@
         <my-component :message="messages">
         </my-component>
     </div>
+    <div id="app4">
+        <p>{{total}}</p>
+        <my-button @add="handelTotal" @redu="handelTotal"></my-button>
+    </div>
+    <div id="app5">
+        {{username}}
+        <component-a></component-a>
+    </div>
     <script>
+        var bus = new Vue();
+        Vue.component('component-a',{
+            template: `<button @click="sendMessage">我要给爷爷发送信息</button>`,
+            methods: {
+                sendMessage: function () {
+                    bus.$emit('on-message','身体健康，万事如意');
+                }
+            }
+        });
+        var app5 = new Vue({
+            el: '#app5',
+            data: {
+                username: ''
+            },
+            mounted: function () {
+                var _this = this;
+                bus.$on('on-message',function (message) {
+                    _this.username = message
+                })
+            }
+        });
+        Vue.component('my-button',{
+            template: `
+            <div>
+                <button @click="increase">+1</button>
+                <button @click="reduce">-1</button>
+            </div>            
+            `,
+            data: function () {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                increase: function () {
+                    this.counter++;
+                    this.$emit('add',this.counter)
+                },
+                reduce: function () {
+                    this.counter--;
+                    this.$emit('redu',this.counter)
+                }
+            }
+        })
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                total: 0
+            },
+            methods: {
+                handelTotal: function (number) {
+                    this.total = number;
+                }
+            }
+        });
+
         Vue.component('my-component',{
             props:{
                 message:[String,Number]
