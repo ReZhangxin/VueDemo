@@ -16,25 +16,62 @@
 <body>
     <h1>hello</h1>
     <hr>
-    <div id="app">
+    <!-- <div id="app">
         <button @click="get()">点我</button>
+    </div> -->
+    <div id="app2">
+        <li v-for="movie in movies" :key="movie.id">
+            <h4>标题：{{movie.title}}</h4>
+            <h5>时间：{{movie.year}}</h5>
+            <h5>评分：{{movie.rating.average}}  </h5>
+            <div>
+                <img :src="movie.images.small || movie.images.large || movie.images.medium" :alt="movie.images.medium">  
+            </div>
+                      
+        </li>
     </div>
     <script>
-        var app = new Vue({
-            el:'#app',
+        const movieURL = './amovie.json';
+        function buildURL() {
+            return movieURL;
+        }
+        var app2 = new Vue({
+            el: '#app2',
             data:{
-                results:[]
+                movies:[]
             },
-           methods: {
-               get:function () {
-                   axios.get('./a.txt').then(function(res){
-                    alert(res.data)
-                   },function(res){
-                    alert(res.status)
-                   })
-               }
-           }
+            created() {
+                this.getDouban();
+            },
+            methods: {
+                getDouban:function () {
+                    let url = buildURL();
+                    axios.get(url).then( res =>{
+                        this.movies =res.data;
+                    }).catch( err =>{
+                        console.log(err)
+                    })
+                }
+            },
+            computed: {
+
+            }
         })
+        // var app = new Vue({
+        //     el:'#app',
+        //     data:{
+        //         results:[]
+        //     },
+        //    methods: {
+        //        get:function () {
+        //            axios.get('./amovie.json').then(function(res){
+        //             alert(res.data)
+        //            },function(res){
+        //             alert(res.status)
+        //            })
+        //        }
+        //    }
+        // })
         
     </script>
 </body>
